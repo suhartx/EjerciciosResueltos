@@ -80,21 +80,19 @@ public class Elecciones {
 		Iterator<CuentaNombre> iterador2 = set.iterator();
 
        while (iterador2.hasNext()) { 
-    	   
-    	   //System.out.println(iterador2.next().toString());
-    	   
+
     	   hashSetToTreeSet.add(iterador2.next());
 
        } 
        
        System.out.println("TreeSet de lista");
+       
+       System.out.println(hashSetToTreeSet.size());
         
         System.out.println(hashSetToTreeSet.toString());
         
         
 	}
-
-
 
 }
 class CuentaNombre implements Comparable<CuentaNombre>{
@@ -153,12 +151,14 @@ class CuentaNombre implements Comparable<CuentaNombre>{
 
 		@Override
 		public int compareTo(CuentaNombre c) {
-			if (nombre.compareToIgnoreCase(c.nombre)>0&& contador<c.contador) {
+			if (nombre.compareToIgnoreCase(c.nombre)<0&& contador<c.contador) {
 				return 2;
-			}else if(contador==c.contador&&nombre.compareToIgnoreCase(c.nombre)<0) {
+			}else if(contador==c.contador&&nombre.compareToIgnoreCase(c.nombre)>0) {
 				return 1;
 			}else if(contador>c.contador) {
 				return -1;
+			}else if(contador>c.contador&&nombre.compareToIgnoreCase(c.nombre)>0) {
+				return -2;
 			}else {
 				return 0;
 			}
