@@ -188,7 +188,6 @@ class CuentaNombre implements Comparable<CuentaNombre>{
 			other.contador++;
 			return true;
 		}
-	
 		
 	}
 
