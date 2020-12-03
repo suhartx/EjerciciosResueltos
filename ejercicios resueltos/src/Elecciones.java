@@ -21,6 +21,11 @@ public class Elecciones {
 		for (int i = 0; i < nombres.length; i++) {
 			lista.add(nombres[i]);
 		}
+		
+		System.out.println("linkedlist de lista");
+		
+		System.out.println(lista.size());
+		
 		System.out.println(lista);
 		
 		ListIterator<String> litr = lista.listIterator(lista.size());
@@ -33,33 +38,56 @@ public class Elecciones {
 			
 		}
 		
+		System.out.println("arraylist de linkedlista al reves");
+		
 		System.out.println(listaAlReves.toString());
+		
+//		System.out.println("lista de HashSet con for");
 		
 		HashSet<CuentaNombre> set = new HashSet<CuentaNombre>();
 
-		int contador=1;
-		for (String nombres : listaAlReves) {
-			CuentaNombre cuenta = new CuentaNombre(nombres, contador);
-			set.add(cuenta);
-			contador++;
 
-		}
-		System.out.println(set.size());
-		System.out.println(set.toString());
+//		for (String nombres : listaAlReves) {
+//			CuentaNombre cuenta = new CuentaNombre(nombres);
+//			set.add(cuenta);
+//
+//
+//		}
+//		
+//		System.out.println(set.size());
+//		System.out.println(set.toString());
 		
-		System.out.println("lo mismo pero con contador ordenado");
+		System.out.println("HashSet de lista");
 
-		Iterator<CuentaNombre> iterador = set.iterator();
-		contador=1;
+		Iterator<String> iterador = listaAlReves.iterator();
+
         while (iterador.hasNext()) { 
-        	iterador.next().setContador(contador);
 
-            contador++;
+        	set.add(new CuentaNombre(iterador.next()));
+
         } 
+        
+        System.out.println(set.size());
 
         System.out.println(set.toString()); 
         
-       Set<CuentaNombre> hashSetToTreeSet = new TreeSet<CuentaNombre>(set);
+        
+        
+       Set<CuentaNombre> hashSetToTreeSet = new TreeSet<CuentaNombre>();
+       
+       
+       
+		Iterator<CuentaNombre> iterador2 = set.iterator();
+
+       while (iterador2.hasNext()) { 
+    	   
+    	   //System.out.println(iterador2.next().toString());
+    	   
+    	   hashSetToTreeSet.add(iterador2.next());
+
+       } 
+       
+       System.out.println("TreeSet de lista");
         
         System.out.println(hashSetToTreeSet.toString());
         
@@ -69,16 +97,16 @@ public class Elecciones {
 
 
 }
-class CuentaNombre{
+class CuentaNombre implements Comparable<CuentaNombre>{
 		
 		String nombre;
 		
-		int contador;
+		int contador =1;
 
-		public CuentaNombre(String nombre , int contador) {
+		public CuentaNombre(String nombre) {
 
 			this.nombre = nombre;
-			this.contador =contador;
+
 		}
 
 		public String getNombre() {
@@ -113,10 +141,27 @@ class CuentaNombre{
 		public boolean equals(Object o) {
 		  if (o instanceof CuentaNombre) {
 			  CuentaNombre p = (CuentaNombre)o;
+			  
+			  p.contador++;
+			  
+			  
 		    return this.nombre.equals(p.nombre);
 		  } else {
 		    return false;
 		  }
+		}
+
+		@Override
+		public int compareTo(CuentaNombre c) {
+			if (nombre.compareToIgnoreCase(c.nombre)>0&& contador<c.contador) {
+				return 2;
+			}else if(contador==c.contador&&nombre.compareToIgnoreCase(c.nombre)<0) {
+				return 1;
+			}else if(contador>c.contador) {
+				return -1;
+			}else {
+				return 0;
+			}
 		}
 		
 	}
