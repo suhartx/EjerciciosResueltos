@@ -129,35 +129,64 @@ class CuentaNombre implements Comparable<CuentaNombre>{
 		public String toString() {
 			return "CuentaNombre [nombre=" + nombre + ", contador=" + contador + "]";
 		}
-
-		@Override
-		public int hashCode() {
-		  return nombre.hashCode();
-		}
+//	LA QUE YO HICE
+//		@Override
+//		public int hashCode() {
+//		  return nombre.hashCode();
+//		}
+//		
+//		@Override
+//		public boolean equals(Object o) {
+//		  if (o instanceof CuentaNombre) {
+//			  CuentaNombre p = (CuentaNombre)o;
+//			  
+//			  p.contador++;
+//			  
+//			  
+//		    return this.nombre.equals(p.nombre);
+//		  } else {
+//		    return false;
+//		  }
+//		}
 		
-		@Override
-		public boolean equals(Object o) {
-		  if (o instanceof CuentaNombre) {
-			  CuentaNombre p = (CuentaNombre)o;
-			  
-			  p.contador++;
-			  
-			  
-		    return this.nombre.equals(p.nombre);
-		  } else {
-		    return false;
-		  }
-		}
+		
 
 		@Override
 		public int compareTo(CuentaNombre c) {
-			if (nombre.compareToIgnoreCase(c.nombre)<0&& contador<c.contador) {
+			if (contador<c.contador) {
+				return 2;
+			}else if(contador==c.contador && nombre.compareToIgnoreCase(c.nombre)>0) {
 				return 1;
-			}else if(contador>c.contador) {
-				return -1;
 			}else {
-				return 0;
+				return -1;
+
 			}
+		}
+
+		@Override
+		public int hashCode() {
+			final int prime = 31;
+			int result = 1;
+			result = prime * result + ((nombre == null) ? 0 : nombre.hashCode());
+			return result;
+		}
+
+		@Override
+		public boolean equals(Object obj) {
+			if (this == obj)
+				return true;
+			if (obj == null)
+				return false;
+			if (getClass() != obj.getClass())
+				return false;
+			CuentaNombre other = (CuentaNombre) obj;
+			if (nombre == null) {
+				if (other.nombre != null)
+					return false;
+			} else if (!nombre.equals(other.nombre))
+				return false;
+			other.contador++;
+			return true;
 		}
 		
 	}
