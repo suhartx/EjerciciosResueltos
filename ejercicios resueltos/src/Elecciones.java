@@ -152,13 +152,9 @@ class CuentaNombre implements Comparable<CuentaNombre>{
 		@Override
 		public int compareTo(CuentaNombre c) {
 			if (nombre.compareToIgnoreCase(c.nombre)<0&& contador<c.contador) {
-				return 2;
-			}else if(contador==c.contador&&nombre.compareToIgnoreCase(c.nombre)>0) {
 				return 1;
 			}else if(contador>c.contador) {
 				return -1;
-			}else if(contador>c.contador&&nombre.compareToIgnoreCase(c.nombre)>0) {
-				return -2;
 			}else {
 				return 0;
 			}
