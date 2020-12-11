@@ -99,11 +99,13 @@ public class TablaBasica extends JFrame{
 			}
 		}
 
+		
 		@Override
 		public Class<?> getColumnClass(int columnIndex) {
 			// TODO Auto-generated method stub			
-			if (columnIndex==2) { return boolean.class;}
-			else if(columnIndex == 1 ) {return int.class;}
+			
+			if (columnIndex==2) { return Boolean.class;}
+			else if(columnIndex == 1 ) {return Integer.class;}
 					
 			return Object.class;
 		}
